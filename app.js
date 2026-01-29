@@ -6,8 +6,8 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 
 const app = express();
-app.use('/auth',AuthRoutes)
 app.use(express.json())
+app.use('/auth',AuthRoutes)
 
 const start = async () => {
   try {
