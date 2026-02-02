@@ -1,8 +1,8 @@
-const express = require('express')
 const dotenv = require('dotenv');
+dotenv.config();
+const express = require('express')
 const AuthRoutes = require('./routes/Auth.js');
 const DbCon = require('./utils/db.js')
-dotenv.config();
 const PORT = process.env.PORT || 4000;
 
 const app = express();
