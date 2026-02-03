@@ -6,3 +6,5 @@ AuthRoutes.post('/register', register);
 AuthRoutes.post('/login', login)
 
 module.exports = AuthRoutes;
+
+console.log();
