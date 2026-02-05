@@ -7,4 +7,3 @@ AuthRoutes.post('/login', login)
 
 module.exports = AuthRoutes;
 
-console.log();
