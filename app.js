@@ -3,9 +3,11 @@ dotenv.config();
 const express = require('express')
 const AuthRoutes = require('./routes/Auth.js');
 const DbCon = require('./utils/db.js')
+const cookiesParser = require('cookie-parser')
 const PORT = process.env.PORT || 4000;
 
 const app = express();
+app.use(cookiesParser())
 app.use(express.json())
 app.use('/auth',AuthRoutes)
 
