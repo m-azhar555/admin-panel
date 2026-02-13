@@ -58,17 +58,19 @@ const login = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
-
-    const { password: _, ...userData } = user._doc;
+      { userId: user._id }, 
+      process.env.JWT_SECRET);
+    res.cookie('token',token,{
+      httpOnly:true,
+      secure:false,
+      maxAge:259200000
+    })
+    
 
     return res.status(200).json({
       success: true,
       message: "User login successfully",
-      user: userData,
+      user: user,
       token,
     });
   } catch (error) {
@@ -80,6 +82,19 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const logout=async(req,res)=>{
+  try {
+    res.clearCookie('token')
+    res.status(200).json({success:true, message: "Logout successful"});
+  } catch (error) {
+    console.log("logout error", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+}
+
+module.exports = { register, login,logout };
 
 
